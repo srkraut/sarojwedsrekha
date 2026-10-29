@@ -2,7 +2,7 @@ import Countdown from "@/components/Countdown";
 import Gallery from "@/components/Gallery";
 import Nav from "@/components/Nav";
 import Leaf from "@/components/Ornament";
-import { couple, events, gallery, site, story, wedding } from "@/data/wedding";
+import { couple, events, gallery, site, wedding } from "@/data/wedding";
 import { fmtDate, fmtTime, googleCalendarUrl } from "@/lib";
 
 const bg = (src: string) => (src ? { backgroundImage: `url(${src})` } : undefined);
@@ -142,23 +142,6 @@ export default function Home() {
           ))}
         </section>
 
-        {/* ── Story ── */}
-        <section id="story" className="section">
-          <span className="speckle-burst" aria-hidden="true" />
-          <Leaf className="corner-leaf" />
-          <SectionHead title="Our Story" sub="How it happened" />
-          <ol className="story">
-            {story.map((s) => (
-              <li key={s.year} className="story__item reveal">
-                <span className="story__tag">{s.year}</span>
-                <div>
-                  <h3 className="script">{s.title}</h3>
-                  <p>{s.text}</p>
-                </div>
-              </li>
-            ))}
-          </ol>
-        </section>
 
         {/* ── Gallery ── */}
         <section id="gallery" className="section section--gallery">

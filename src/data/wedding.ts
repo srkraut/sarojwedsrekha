@@ -36,7 +36,7 @@ export const wedding = {
   dateBs: "मंसिर १७, २०८३",
   city: "Itahari",
   country: "Nepal",
-  // Cover: selfie at Janaki Mandir — couple in colour, temple in sage duotone.
+  // Cover: selfie at Janaki Mandir — couple in colour, temple in rose duotone.
   heroImage: "/images/hero-1920.webp",
   heroSrcSet: "/images/hero-800.webp 800w, /images/hero-1280.webp 1280w, /images/hero-1920.webp 1920w",
   heroAlt: "Saroj and Rekha in front of Janaki Mandir, Janakpur",
@@ -83,6 +83,7 @@ export const events: WeddingEvent[] = [
   },
 ];
 
+// Not shown on the site for now (Our Story section removed) — kept for later.
 export const story = [
   { year: "2019", title: "First Hello", text: "We met through mutual friends on an ordinary afternoon that turned out to be anything but." },
   { year: "2021", title: "First Trip", text: "A rainy weekend in Pokhara, one shared umbrella, and a lot of laughter by Phewa Lake." },
