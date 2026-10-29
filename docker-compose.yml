@@ -1,0 +1,11 @@
+# Dokploy: Create Compose → Provider GitHub → Compose path ./docker-compose.yml
+# Add the domain in Dokploy's Domains tab: service "web", port 80 (Dokploy adds the Traefik labels).
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: sarojwedsrekha:latest
+    restart: unless-stopped
+    expose:
+      - "80"

@@ -8,5 +8,6 @@ out
 *.CR2
 Dockerfile
 .dockerignore
+docker-compose.yml
 README.md
 .env*

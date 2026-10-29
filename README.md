@@ -26,16 +26,18 @@ npm run lint    # type-check
 ## Deploy (Dokploy)
 The repo ships a `Dockerfile`: Node 22 builds the static site, then **nginx** serves `out/` (gzip, long-cache for `/_next/static` and `/images`, no-cache for pages, health check). Final image ≈ 85 MB.
 
-1. Dokploy → **Create Application** → Provider: GitHub → `srkraut/sarojwedsrekha`, branch `main`.
-2. Build Type: **Dockerfile** (path `./Dockerfile`).
-3. **Domains** → add `sarojwedsrekha.com` (and `www.`), container port **80**, HTTPS on (Let's Encrypt).
-4. Point the domain's DNS `A` record at your Dokploy server's IP.
-5. **Deploy**. Enable *Auto Deploy* so every push to `main` redeploys.
+Deployed with **Docker Compose** (`docker-compose.yml` → one service, `web`, built from the `Dockerfile`):
 
-Test the image locally:
+1. Dokploy → your project → **Create Service → Compose**.
+2. Provider: **GitHub** → `srkraut/sarojwedsrekha`, branch `main`, Compose path `./docker-compose.yml`.
+3. **Domains** tab → add `sarojwedsrekha.com` (and `www.`): service **web**, container port **80**, HTTPS on (Let's Encrypt). Dokploy adds the Traefik routing for you — the compose file deliberately has no `ports:`.
+4. Point the domain's DNS `A` record at your Dokploy server's IP.
+5. **Deploy**. Enable *Autodeploy* so every push to `main` redeploys.
+
+Test locally:
 ```bash
-docker build -t sarojwedsrekha .
-docker run --rm -p 8080:80 sarojwedsrekha   # http://localhost:8080
+docker compose build
+docker run --rm -p 8080:80 sarojwedsrekha:latest   # http://localhost:8080
 ```
 
 If you use a different domain, update `site.url` in `src/data/wedding.ts` (canonical URL, sitemap, share previews).
