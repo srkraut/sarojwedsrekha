@@ -1,0 +1,12 @@
+node_modules
+.next
+out
+.git
+*.heic
+*.HEIC
+*.cr2
+*.CR2
+Dockerfile
+.dockerignore
+README.md
+.env*

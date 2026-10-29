@@ -23,15 +23,22 @@ npm start       # preview ./out on http://localhost:3000
 npm run lint    # type-check
 ```
 
-## Deploy
-**Vercel (recommended, free):** vercel.com → Add New → Project → import `srkraut/sarojwedsrekha` → Deploy. No settings needed; `vercel.json` adds image caching headers. Every push to `main` redeploys.
+## Deploy (Dokploy)
+The repo ships a `Dockerfile`: Node 22 builds the static site, then **nginx** serves `out/` (gzip, long-cache for `/_next/static` and `/images`, no-cache for pages, health check). Final image ≈ 85 MB.
 
-**Cloudflare Pages:** build command `npm run build`, output directory `out`, env `NODE_VERSION=22`.
+1. Dokploy → **Create Application** → Provider: GitHub → `srkraut/sarojwedsrekha`, branch `main`.
+2. Build Type: **Dockerfile** (path `./Dockerfile`).
+3. **Domains** → add `sarojwedsrekha.com` (and `www.`), container port **80**, HTTPS on (Let's Encrypt).
+4. Point the domain's DNS `A` record at your Dokploy server's IP.
+5. **Deploy**. Enable *Auto Deploy* so every push to `main` redeploys.
 
-### Custom domain
-1. Buy `sarojwedsrekha.com` (Cloudflare Registrar / Namecheap).
-2. Vercel → Project → Settings → Domains → add `sarojwedsrekha.com` and `www.sarojwedsrekha.com`, then set the DNS records it shows.
-3. If you use a different domain, update `site.url` in `src/data/wedding.ts` (used for canonical URL, sitemap and share previews).
+Test the image locally:
+```bash
+docker build -t sarojwedsrekha .
+docker run --rm -p 8080:80 sarojwedsrekha   # http://localhost:8080
+```
+
+If you use a different domain, update `site.url` in `src/data/wedding.ts` (canonical URL, sitemap, share previews).
 
 ### After going live
 - Google Search Console → add the domain → submit `https://sarojwedsrekha.com/sitemap.xml`.
