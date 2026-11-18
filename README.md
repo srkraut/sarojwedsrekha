@@ -14,6 +14,14 @@ Images live in `public/images/` (all WebP, metadata stripped):
 
 Original photos (`*.heic`, `*.CR2`) are git-ignored on purpose — they can contain GPS location data.
 
+## Invitation page (`/invitation/`)
+A Nepali-first digital निमन्त्रणा: envelope cover → opening animation → card with mandap, निमन्त्रणा text, countdown, events, family and contacts.
+
+- Edit its text in [`src/data/invitation.ts`](src/data/invitation.ts). Empty lists (`wellWishers`, `contacts`, `hostAddress`) are hidden.
+- Event times, venues and map links come from `src/data/wedding.ts`.
+- **Personalised links:** add `?to=` with the guest's name — e.g. `https://sarojwedsrekha.com/invitation/?to=राम दाइ` shows "आदरणीय राम दाइ सपरिवार" on the envelope.
+- The page is `noindex` (it contains family details), so it won't appear in Google search.
+
 ## Commands
 ```bash
 npm install

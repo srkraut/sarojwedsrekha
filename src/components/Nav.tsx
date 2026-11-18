@@ -7,6 +7,7 @@ const LINKS = [
   ["Couple", "#couple"],
   ["Events", "#events"],
   ["Gallery", "#gallery"],
+  ["Invitation", "/invitation/"],
 ] as const;
 
 export default function Nav() {
